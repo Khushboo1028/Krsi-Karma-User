@@ -91,7 +91,7 @@
     <string name="payment">Payment</string>
     <string name="payment_failed">Payment Failed</string>
     <string name="payment_pending">Payment Pending</string>
-    <string name="payment_note">Note: You will be redirected to the payment gateway.</string>
+    <string name="payment_note">Note: You will be redirected to the payment gateway. You can also hand over cash once the service is completed</string>
     <string name="payment_failed_message">We were unable to process your payment; Reason: </string>
     <string name="please_try_again">Please try again later.</string>
     <string name="payment_completed">Payment Completed</string>

@@ -98,7 +98,7 @@
     <string name="payment">भुगतान</string>
     <string name="payment_pending">भुगतान लंबित</string>
     <string name="payment_failed">भुगतान नहीं हुआ</string>
-    <string name="payment_note">नोट: आपको भुगतान गेटवे पर भेज दिया जाएगा।</string>
+    <string name="payment_note"> नोट: आपको भुगतान गेटवे पर पुनर्निर्देशित किया जाएगा। सेवा समाप्त होने के बाद आप कैश भी सौंप सकते हैं </string>
     <string name="payment_failed_message">हम आपके भुगतान को संसाधित करने में असमर्थ थे;कारण: </string>
     <string name="please_try_again">कृपया पुन: प्रयास करें।</string>
     <string name="payment_completed">भुगतान पूरा हुआ</string>
@@ -107,10 +107,6 @@
 
     <string name="greetings">नमस्कार, </string>
     <string name="paid_via">भुगतान माध्यम:</string>
-
-
-
-
 
 
 </resources>
