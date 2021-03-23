@@ -344,12 +344,20 @@ public class OrderDetailsActivity extends AppCompatActivity {
                                     tv_order_status_text.setTextColor(getColor(R.color.brand_color));
                                     animationView.setAnimation(R.raw.cancel_animation);
                                     animationView.playAnimation();
-                                    tv_partner_name.setVisibility(View.GONE);
-                                    tv_partner_phone.setVisibility(View.GONE);
-                                    card_user.setVisibility(View.GONE);
-                                    tv_partner_details_text.setVisibility(View.GONE);
                                     btn_cancel.setVisibility(View.GONE);
                                     tv_otp.setVisibility(View.GONE);
+                                    if(partner_id!=null){
+                                        tv_partner_name.setVisibility(View.VISIBLE);
+                                        tv_partner_phone.setVisibility(View.VISIBLE);
+                                        card_user.setVisibility(View.VISIBLE);
+                                        tv_partner_details_text.setVisibility(View.VISIBLE);
+                                    }else{
+                                        tv_partner_name.setVisibility(View.GONE);
+                                        tv_partner_phone.setVisibility(View.GONE);
+                                        card_user.setVisibility(View.GONE);
+                                        tv_partner_details_text.setVisibility(View.GONE);
+                                    }
+
                                 }
 
                                 else if (order_status.equals(getString(R.string.order_status_type_completed))) {
@@ -361,6 +369,11 @@ public class OrderDetailsActivity extends AppCompatActivity {
                                     tv_payment_text.setVisibility(View.VISIBLE);
                                     tv_payment.setVisibility(View.VISIBLE);
                                     tv_otp.setVisibility(View.GONE);
+                                    tv_partner_name.setVisibility(View.VISIBLE);
+                                    tv_partner_phone.setVisibility(View.VISIBLE);
+                                    card_user.setVisibility(View.VISIBLE);
+                                    tv_partner_details_text.setVisibility(View.VISIBLE);
+
 
                                     if(doc.get(getString(R.string.payment_mode))!=null){
                                         tv_payment.setText(getString(R.string.paid_via) + " " + doc.getString(getString(R.string.payment_mode)));
@@ -378,6 +391,11 @@ public class OrderDetailsActivity extends AppCompatActivity {
                                     tv_payment.setVisibility(View.GONE);
                                     tv_otp.setVisibility(View.GONE);
                                     btn_cancel.setVisibility(View.GONE);
+                                    tv_otp.setVisibility(View.GONE);
+                                    tv_partner_name.setVisibility(View.VISIBLE);
+                                    tv_partner_phone.setVisibility(View.VISIBLE);
+                                    card_user.setVisibility(View.VISIBLE);
+                                    tv_partner_details_text.setVisibility(View.VISIBLE);
 
 
                                 }
@@ -393,6 +411,11 @@ public class OrderDetailsActivity extends AppCompatActivity {
                                     btn_cancel.setText(getString(R.string.proceed_to_pay));
                                     btn_cancel.setVisibility(View.VISIBLE);
                                     tv_otp.setVisibility(View.GONE);
+                                    tv_otp.setVisibility(View.GONE);
+                                    tv_partner_name.setVisibility(View.VISIBLE);
+                                    tv_partner_phone.setVisibility(View.VISIBLE);
+                                    card_user.setVisibility(View.VISIBLE);
+                                    tv_partner_details_text.setVisibility(View.VISIBLE);
 
                                 }
 
@@ -404,7 +427,13 @@ public class OrderDetailsActivity extends AppCompatActivity {
                                     animationView.setAnimation(R.raw.on_going_animation);
                                     animationView.playAnimation();
                                     btn_cancel.setText(getString(R.string.cancel));
+                                    btn_cancel.setVisibility(View.VISIBLE);
                                     tv_otp.setVisibility(View.VISIBLE);
+                                    tv_otp.setVisibility(View.GONE);
+                                    tv_partner_name.setVisibility(View.VISIBLE);
+                                    tv_partner_phone.setVisibility(View.VISIBLE);
+                                    card_user.setVisibility(View.VISIBLE);
+                                    tv_partner_details_text.setVisibility(View.VISIBLE);
 
                                 }
 

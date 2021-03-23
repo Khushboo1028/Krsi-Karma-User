@@ -1,8 +1,11 @@
 package com.krsikarma.app.Activities;
 
+import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,6 +20,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
@@ -46,9 +50,17 @@ import com.google.mlkit.nl.translate.TranslateLanguage;
 import com.google.mlkit.nl.translate.Translation;
 import com.google.mlkit.nl.translate.Translator;
 import com.google.mlkit.nl.translate.TranslatorOptions;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.MultiplePermissionsReport;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.DexterError;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.PermissionRequestErrorListener;
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.krsikarma.app.Models.Service;
 import com.krsikarma.app.R;
 import com.krsikarma.app.Utility.DefaultTextConfig;
+import com.krsikarma.app.Utility.LocationTrack;
 import com.krsikarma.app.Utility.Utils;
 
 import java.io.IOException;
@@ -122,6 +134,9 @@ public class BookAServiceActivity extends AppCompatActivity {
 
 
     String phone_language;
+
+    LocationTrack locationTrack;
+
 
 
 
@@ -203,8 +218,7 @@ public class BookAServiceActivity extends AppCompatActivity {
 
         getUserName();
         checkIsOrderGoingOn();
-        Log.i(TAG, "long id is " +generateLongId());
-
+        createPermissionListeners();
     }
 
 
@@ -507,6 +521,95 @@ public class BookAServiceActivity extends AppCompatActivity {
             }
         }
     }
+
+    private void createPermissionListeners(){
+        Dexter.withContext(this)
+                .withPermissions(
+                        Manifest.permission.ACCESS_COARSE_LOCATION,
+                        Manifest.permission.ACCESS_FINE_LOCATION
+                ).withListener(new MultiplePermissionsListener() {
+            @Override
+            public void onPermissionsChecked(MultiplePermissionsReport report) {
+
+                if (report.areAllPermissionsGranted()) {
+                  //find current location here
+
+                    getCurrentLocation();
+                }
+
+                // check for permanent denial of any permission
+                if (report.isAnyPermissionPermanentlyDenied()) {
+                    Log.i(TAG, "Permissions permanently denied. Open Settings");
+
+
+                    AlertDialog.Builder builder;
+                    AlertDialog alert;
+
+                    builder = new AlertDialog.Builder(BookAServiceActivity.this);
+                    builder.setMessage(getString(R.string.open_settings_permission))
+                            .setCancelable(true)
+                            .setPositiveButton(getString(R.string.open_settings), new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    Intent intent = new Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                                    intent.setData(Uri.parse("package:" + getPackageName()));
+                                    startActivity(intent);
+
+                                }
+                            });
+                    alert = builder.create();
+                    alert.setTitle(getString(R.string.error));
+                    alert.show();
+                }
+
+            }
+
+            @Override
+            public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
+                token.continuePermissionRequest();
+            }
+
+        }).withErrorListener(new PermissionRequestErrorListener() {
+            @Override
+            public void onError(DexterError error) {
+                Toast.makeText(getApplicationContext(), "Error occurred! " + error.toString(), Toast.LENGTH_SHORT).show();
+                Log.i(TAG, "Error Occurred" + error.toString());
+            }
+        }).check();
+    }
+
+    private void getCurrentLocation(){
+        locationTrack = new LocationTrack(BookAServiceActivity.this);
+
+        if (locationTrack.canGetLocation()) {
+            address_latitude = locationTrack.getLatitude();
+            address_longitude = locationTrack.getLongitude();
+
+            Geocoder geocoder;
+            List<Address> addresses;
+            geocoder = new Geocoder(getApplicationContext(), Locale.getDefault());
+
+            Geocoder geocoder2 = new Geocoder(this, Locale.getDefault());
+            List<Address> addresses2 = null;
+            try {
+                addresses2 = geocoder2.getFromLocation(address_latitude, address_longitude, 1);
+                postalCode = addresses2.get(0).getPostalCode();
+                String city = addresses2.get(0).getLocality();
+                String state = addresses2.get(0).getAdminArea();
+                String country = addresses2.get(0).getCountryName();
+                String knownName = addresses2.get(0).getFeatureName();
+
+                Log.i(TAG, "address is " + addresses2.get(0).getAddressLine(0));
+                address =  addresses2.get(0).getAddressLine(0);
+                tv_address.setText(address);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+        }
+    }
+
 
     private void addBookingDataToFirebase() {
         progressBar.setVisibility(View.VISIBLE);

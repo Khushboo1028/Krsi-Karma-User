@@ -86,6 +86,7 @@ public class PaymentActivity extends AppCompatActivity implements PaymentResultL
             @Override
             public void onSlideComplete(SlideToActView slideToActView) {
                 order_amount = order_amount + "00";
+                Log.i(TAG, "order amount is " +order_amount);
                 getRequest(order_amount);
             }
         });
@@ -266,6 +267,7 @@ public class PaymentActivity extends AppCompatActivity implements PaymentResultL
         Checkout checkout = new Checkout();
         checkout.setKeyID(getString(R.string.RAZOR_PAY_KEY_TEST_ID));
 
+        Log.i(TAG, "order amount un start payment is " +order_amount);
         try {
             JSONObject options = new JSONObject();
 
