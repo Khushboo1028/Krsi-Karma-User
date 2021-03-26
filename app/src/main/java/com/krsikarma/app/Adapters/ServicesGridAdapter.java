@@ -139,6 +139,10 @@ public class ServicesGridAdapter extends BaseAdapter {
                                     public void onSuccess(String s) {
                                         Log.i(TAG, "hindi description is " + s);
                                         textView.setText(text + " { " + s + " }");
+
+                                        if(text.equals("Rotavator")){
+                                            textView.setText(text + " { " + "रोटावेटर" + " }");
+                                        }
                                     }
                                 })
                                 .addOnFailureListener(

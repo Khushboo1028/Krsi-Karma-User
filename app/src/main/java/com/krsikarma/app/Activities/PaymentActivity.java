@@ -307,6 +307,7 @@ public class PaymentActivity extends AppCompatActivity implements PaymentResultL
             Map<String, Object> data = new HashMap<>();
             data.put(getString(R.string.order_status), getString(R.string.order_status_type_completed));
             data.put(getString(R.string.payment_mode), getString(R.string.online));
+            data.put((getString(R.string.razorpay_payment_id)), razorpayPaymentID);
 
             db.collection(getString(R.string.orders)).document(document_id)
                     .update(data)

@@ -112,7 +112,9 @@ public class Utils {
                                 .addOnSuccessListener(new OnSuccessListener<String>() {
                                     @Override
                                     public void onSuccess(String s) {
+
                                         textView.setText(s);
+
                                     }
                                 })
                                 .addOnFailureListener(

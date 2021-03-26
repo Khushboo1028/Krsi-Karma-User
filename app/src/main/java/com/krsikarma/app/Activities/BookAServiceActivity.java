@@ -435,7 +435,6 @@ public class BookAServiceActivity extends AppCompatActivity {
         return dateFormat.format(calendar.getTime());
     }
 
-
     private Timestamp getSelectedDate() {
         int radioButtonID = date_radio_group.getCheckedRadioButtonId();
         View radioButton = date_radio_group.findViewById(radioButtonID);
@@ -542,24 +541,24 @@ public class BookAServiceActivity extends AppCompatActivity {
                     Log.i(TAG, "Permissions permanently denied. Open Settings");
 
 
-                    AlertDialog.Builder builder;
-                    AlertDialog alert;
-
-                    builder = new AlertDialog.Builder(BookAServiceActivity.this);
-                    builder.setMessage(getString(R.string.open_settings_permission))
-                            .setCancelable(true)
-                            .setPositiveButton(getString(R.string.open_settings), new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    Intent intent = new Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-                                    intent.setData(Uri.parse("package:" + getPackageName()));
-                                    startActivity(intent);
-
-                                }
-                            });
-                    alert = builder.create();
-                    alert.setTitle(getString(R.string.error));
-                    alert.show();
+//                    AlertDialog.Builder builder;
+//                    AlertDialog alert;
+//
+//                    builder = new AlertDialog.Builder(BookAServiceActivity.this);
+//                    builder.setMessage(getString(R.string.open_settings_permission))
+//                            .setCancelable(true)
+//                            .setPositiveButton(getString(R.string.open_settings), new DialogInterface.OnClickListener() {
+//                                @Override
+//                                public void onClick(DialogInterface dialogInterface, int i) {
+//                                    Intent intent = new Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+//                                    intent.setData(Uri.parse("package:" + getPackageName()));
+//                                    startActivity(intent);
+//
+//                                }
+//                            });
+//                    alert = builder.create();
+//                    alert.setTitle(getString(R.string.error));
+//                    alert.show();
                 }
 
             }

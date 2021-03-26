@@ -202,7 +202,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void getServiceData() {
         listenerRegistration = db.collection(getString(R.string.services))
-                .orderBy(getString(R.string.name))
+                .orderBy(getString(R.string.date_created))
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value,

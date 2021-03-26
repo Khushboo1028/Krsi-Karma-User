@@ -98,7 +98,7 @@
     <string name="unable_to_add_onto_database">Payment is completed but not able to add onto databse. Please contact admin. </string>
 
     <string name="greetings">Hi, </string>
-    <string name="paid_via">Paid via</string>
+    <string name="paid_via">Payment Method: </string>
 
     <!--    API KEYS-->
     <string name="PLACES_API_KEY" translatable="false">AIzaSyAl_W-16U6yJI1RLf0gZdDd_IHoXFNi6L0</string>

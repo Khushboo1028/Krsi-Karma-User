@@ -71,6 +71,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
     TextView tv_payment_text;
     TextView tv_payment;
     TextView tv_otp;
+
     ImageView img_user;
     Button btn_cancel;
     CardView card_user;
@@ -379,6 +380,14 @@ public class OrderDetailsActivity extends AppCompatActivity {
                                         tv_payment.setText(getString(R.string.paid_via) + " " + doc.getString(getString(R.string.payment_mode)));
                                     }
 
+                                    if(doc.get(getString(R.string.razorpay_payment_id))!=null){
+                                        String razorpay_payment_id = doc.getString(getString(R.string.razorpay_payment_id));
+                                        if(razorpay_payment_id!=null){
+                                            tv_payment.setText(getString(R.string.paid_via) + " " + doc.getString(getString(R.string.payment_mode)) + "\nRazorpay Ref #" + razorpay_payment_id);
+
+                                        }
+                                    }
+
 
                                 }
 
@@ -389,7 +398,6 @@ public class OrderDetailsActivity extends AppCompatActivity {
                                     animationView.playAnimation();
                                     tv_payment_text.setVisibility(View.GONE);
                                     tv_payment.setVisibility(View.GONE);
-                                    tv_otp.setVisibility(View.GONE);
                                     btn_cancel.setVisibility(View.GONE);
                                     tv_otp.setVisibility(View.GONE);
                                     tv_partner_name.setVisibility(View.VISIBLE);
@@ -429,7 +437,6 @@ public class OrderDetailsActivity extends AppCompatActivity {
                                     btn_cancel.setText(getString(R.string.cancel));
                                     btn_cancel.setVisibility(View.VISIBLE);
                                     tv_otp.setVisibility(View.VISIBLE);
-                                    tv_otp.setVisibility(View.GONE);
                                     tv_partner_name.setVisibility(View.VISIBLE);
                                     tv_partner_phone.setVisibility(View.VISIBLE);
                                     card_user.setVisibility(View.VISIBLE);
