@@ -27,6 +27,7 @@ import com.google.firebase.messaging.FirebaseMessaging;
 import com.krsikarma.app.Activities.AccountActivity;
 import com.krsikarma.app.Activities.CreateProfileActivity;
 import com.krsikarma.app.Activities.GetStartedActivity;
+import com.krsikarma.app.Activities.PrivacyPolicy;
 import com.krsikarma.app.Activities.RaiseAComplaintActivity;
 import com.krsikarma.app.Activities.YourOrdersActivity;
 import com.krsikarma.app.R;
@@ -91,11 +92,17 @@ public class SettingsRecyclerAdapter extends RecyclerView.Adapter<SettingsRecycl
                         break;
 
                     case 2: //Privacy Policy
-
-
-
+                        Intent privacy_intent = new Intent(mActivity, PrivacyPolicy.class);
+                        privacy_intent.putExtra("textHeading", mActivity.getString(R.string.privacy_policy));
+                        privacy_intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        mActivity.startActivity(privacy_intent);
+                        break;
 
                     case 3: //Terms
+                        Intent terms_intent = new Intent(mActivity, PrivacyPolicy.class);
+                        terms_intent.putExtra("textHeading", mActivity.getString(R.string.terms_of_use));
+                        terms_intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        mActivity.startActivity(terms_intent);
                         break;
                     case 4:
                         //logout

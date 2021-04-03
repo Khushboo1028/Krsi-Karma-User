@@ -295,7 +295,9 @@ public class MainActivity extends AppCompatActivity {
                         }
                         if (!utils.isStringNull(snapshot.getString(getString(R.string.first_name)))) {
                             first_name = snapshot.getString(getString(R.string.first_name));
-                            tv_user_greetings.setText(getString(R.string.greetings) + " " + first_name);
+                            if(tv_user_greetings!=null) {
+                                tv_user_greetings.setText(getString(R.string.greetings) + " " + first_name);
+                            }
 
                         }
 

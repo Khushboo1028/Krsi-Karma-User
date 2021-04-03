@@ -408,6 +408,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
 
                                 }
 
+                                //TODO: CHange here when making online on again
                                 else if (order_status.equals(getString(R.string.order_status_type_payment_pending))) {
                                     tv_order_status_text.setText(getString(R.string.order_pending_payment_status));
                                     tv_order_status_text.setTextColor(getColor(R.color.blue));
@@ -416,8 +417,9 @@ public class OrderDetailsActivity extends AppCompatActivity {
                                     tv_payment.setText(getString(R.string.payment_pending));
                                     animationView.setAnimation(R.raw.payment_pending_animation);
                                     animationView.playAnimation();
-                                    btn_cancel.setText(getString(R.string.proceed_to_pay));
-                                    btn_cancel.setVisibility(View.VISIBLE);
+//                                    btn_cancel.setText(getString(R.string.proceed_to_pay));
+//                                    btn_cancel.setVisibility(View.VISIBLE);
+                                    btn_cancel.setVisibility(View.GONE);
                                     tv_otp.setVisibility(View.GONE);
                                     tv_otp.setVisibility(View.GONE);
                                     tv_partner_name.setVisibility(View.VISIBLE);

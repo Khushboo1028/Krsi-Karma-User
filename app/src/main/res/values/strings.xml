@@ -71,7 +71,7 @@
     <string name="update_app">Update app to get all the latest features!</string>
     <string name="install_now">Install Now</string>
 
-    <string name="booking_note">Note: The service will be confirmed by our nearby partner. You will receive their contact information. We advise you to please call and confirm the schedule of the service booked.\n\nYou can make the payment online or in cash once the service is completed.</string>
+    <string name="booking_note">Note: The service will be confirmed by our nearby partner. You will receive their contact information. We advise you to please call and confirm the schedule of the service booked.\n\nPlease make payment in cash once the service is completed.</string>
 
     <string name="order_details">Order Details</string>
     <string name="order_number">Order Number</string>
@@ -164,8 +164,6 @@
 
     <string name="cash" translatable="false">cash</string>
     <string name="online" translatable="false">online</string>
-
-
 
 
 </resources>
